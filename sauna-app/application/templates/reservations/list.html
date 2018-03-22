@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Reservation</th>
+      <th>Done</th>
+    </tr>
+    {% for reservation in reservations %}
+    <tr>
+      <td>{{ reservation.name }}</td>
+      <td>{{ reservation.done }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('reservations_set_done', reservation_id=reservation.id) }}">
+          <input type="submit" value="Change status!"/>
+        </form>
+          </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

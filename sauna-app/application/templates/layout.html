@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SaunaReservation</title>
+  </head>
+  
+  <body>
+    <ul>
+        <li><a href="{{ url_for('reservations_index') }}">List reservations
+        </a></li>
+        <li><a href="{{ url_for('reservations_form') }}">Add a reservation</a></li>
+    </ul>
+    
+    {% block body %}
+    <p>
+  Content.
+    </p>
+    {% endblock %}
+  </body>
+</html>
