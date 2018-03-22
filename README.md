@@ -20,4 +20,5 @@ Käyttäjä 1--x Tiedosto.
 
 Nämä saattavat muuttua.
 
-https://tsoha-sauna.herokuapp.com/
+Linkki sovellukseen:
+[Tsoha-sauna](https://tsoha-sauna.herokuapp.com/)
