@@ -10,10 +10,10 @@ def reservations_index():
 def reservations_form():
     return render_template("reservations/new.html")
 
-@app.route("/reservations/<task_id>/", methods=["POST"])
-def reservations_set_done(task_id):
+@app.route("/reservations/<reservation_id>/", methods=["POST"])
+def reservations_set_done(reservation_id):
 
-    t = Reservation.query.get(task_id)
+    t = Reservation.query.get(reservation_id)
     t.done = True
     db.session().commit()
   
