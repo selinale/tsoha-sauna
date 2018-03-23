@@ -21,4 +21,5 @@ Käyttäjä 1--x Tiedosto.
 Nämä saattavat muuttua.
 
 [Linkki sovellukseen](https://tsoha-sauna.herokuapp.com/)
+
 [Dokumentaatio](https://github.com/selinale/tsoha-sauna/blob/master/documentation/documentation)
