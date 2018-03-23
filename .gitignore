@@ -1,4 +1,4 @@
 .DS_Store
-__pychache__
-__init__.py
-__init__.pyc
+__pychache__/
+*.pyc
+*.db
