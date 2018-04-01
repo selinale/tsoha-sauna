@@ -34,6 +34,7 @@ def reservations_create():
 
     r = Reservation(form.name.data)
     r.done = form.done.data
+    r.account_id = current_user.id 
 
     db.session().add(r)
     db.session().commit()
