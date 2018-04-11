@@ -32,9 +32,9 @@ class User(Base):
     def find_users_with_no_reservations(done=0):
         stmt = text("SELECT Account.id, Account.name FROM Account"
                     " LEFT JOIN Reservation ON Reservation.account_id = Account.id"
-                    " WHERE (Reservation.done IS null OR Reservation.done = 1)"
+                    " WHERE (Reservation.done IS null OR  = :done)"
                     " GROUP BY Account.id"
-                    " HAVING COUNT(Reservation.id) = 0")
+                    " HAVING COUNT(Reservation.id) = 0").params(done=done)
         res = db.engine.execute(stmt)
 
         response = []
