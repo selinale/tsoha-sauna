@@ -29,7 +29,7 @@ class User(Base):
         return True
 
     @staticmethod
-    def find_users_with_no_reservations(done=0):
+    def find_users_with_no_reservations(done=False):
         stmt = text("SELECT Account.id, Account.name FROM Account"
                     " LEFT JOIN Reservation ON Reservation.account_id = Account.id"
                     " WHERE (Reservation.done IS null OR Reservation.done = :done)"
