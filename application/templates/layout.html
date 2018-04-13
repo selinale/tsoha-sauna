@@ -21,6 +21,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('reservations_form') }} ">Add a reservation</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('list_households') }} ">List households</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('households_form') }} ">Add a household</a>
+          </li>
         </ul>
         <div class="form-inline mt-2 mt-md-0">
           {% if current_user.is_authenticated %}

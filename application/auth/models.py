@@ -10,6 +10,7 @@ class User(Base):
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    household = db.Column(db.String(2), db.ForeignKey('household.id'))
 
     reservations = db.relationship("Reservation", backref='account', lazy=True)
 

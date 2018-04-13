@@ -7,7 +7,10 @@ from application.reservations.forms import ReservationForm
 
 @app.route("/reservations/", methods=["GET"])
 def reservations_index():
-    return render_template("reservations/list.html", reservations = Reservation.query.all())
+    reservations = Reservation.query.all()
+    count = Reservation.reservation_count()
+        
+    return render_template("reservations/list.html", reservations = reservations, count=count)
 
 @app.route("/reservations/new/")
 @login_required

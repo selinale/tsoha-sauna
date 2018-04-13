@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Household</th>
+    </tr>
+  </table> 
+  {% for h in households %}
+    <div>
+      {{ h.id }}
+    </div> 
+  {% endfor %}
+
+  <div> {{ count }} households</div>
+
+  {% endblock %}
