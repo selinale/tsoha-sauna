@@ -10,7 +10,6 @@ def list_households():
     households = Household.query.all()
     count = Household.household_count()
 
-
     return render_template('households/list.html', households=households, count=count)
 
 
