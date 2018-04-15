@@ -1,0 +1,55 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+
+
+{% if error %}
+<div>
+    <b class="alert alert-danger">{{error}}</b>
+</div>
+{% endif %}
+
+<br/>
+
+<form method="POST" action="{{ url_for('auth_register') }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.household.label }}
+            </td>
+            <td>
+                {{ form.household }}
+            </td>
+        </tr>  
+        <tr>
+            <td>
+                {{ form.username.label }}
+            </td>
+            <td>
+                {{ form.username }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.password.label }}
+            </td>
+            <td>
+                {{ form.password }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.confirmation.label }}
+            </td>
+            <td>
+                {{ form.confirmation }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Register" />
+            </td>
+        </tr>
+    </form>
+
+    {% endblock %}

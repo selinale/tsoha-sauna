@@ -15,17 +15,7 @@ def reservations_index():
 @app.route("/reservations/new/")
 @login_required
 def reservations_form():
-    return render_template("reservations/new.html", form = ReservationForm())
-
-@app.route("/reservations/<reservation_id>/", methods=["POST"])
-@login_required
-def reservations_set_done(reservation_id):
-
-    r = Reservation.query.get(reservation_id)
-    r.done = True
-    db.session().commit()
-  
-    return redirect(url_for("reservations_index"))    
+    return render_template("reservations/new.html", form = ReservationForm()) 
 
 @app.route("/reservations/", methods=["POST"])
 @login_required
@@ -36,7 +26,6 @@ def reservations_create():
         return render_template("reservations/new.html", form = form)
 
     r = Reservation(form.name.data)
-    r.done = form.done.data
     r.account_id = current_user.id 
 
     db.session().add(r)

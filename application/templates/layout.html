@@ -9,30 +9,40 @@
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+
       <a class="navbar-brand" href="#">SaunaReservation</a>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
+
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('reservations_index') }} ">List reservations</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('reservations_form') }} ">Add a reservation</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('list_households') }} ">List households</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('households_form') }} ">Add a household</a>
           </li>
         </ul>
+        
         <div class="form-inline mt-2 mt-md-0">
           {% if current_user.is_authenticated %}
-          <a href="{{ url_for('auth_logout') }}">Hello {{ current_user.name }} -- Logout</a>
+          <a href="{{ url_for('auth_logout') }}">Hello {{ current_user.username }} -- Logout</a>
           {% else %}
-          <a href="{{ url_for('auth_login') }}">Login</a>
+          <a href="{{ url_for('auth_login') }}">Login&nbsp;</a>
+          
+          <a href="{{ url_for('auth_register') }}">Register </a>
           {% endif %}
         </div>
       </div>
