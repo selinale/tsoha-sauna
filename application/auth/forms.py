@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField
+from wtforms import PasswordField, StringField, SelectField
 
 
 class LoginForm(FlaskForm):
@@ -13,7 +13,12 @@ class RegisterForm(FlaskForm):
     username = StringField("Username")
     password = PasswordField("Password")
     confirmation = PasswordField("Password confirmation")
-    household = StringField("Household")
+    household = SelectField(
+        'Talous',
+        choices=[
+            ('A1','A1'), ('A2','A2'), ('A3','A3'), ('B4','B4')
+        ]
+    )
 
     class Meta:
         csrf = False

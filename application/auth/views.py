@@ -42,7 +42,7 @@ def auth_register():
     if not confirmed:
         return render_template("auth/registerform.html", form=form, error = "Salasanat eivät täsmää!")
  
-    u = User(form.household.data, form.username.data, form.password.data, form.confirmation.data)
+    u = User(form.household.data, form.username.data, form.password.data)
 
     db.session().add(u)
     db.session().commit()
