@@ -30,6 +30,9 @@ class User(Base):
     def is_authenticated(self):
         return True
 
+    def roled(self):
+        return ["ADMIN"]    
+
     @staticmethod
     def find_users_with_no_reservations():
         stmt = text("SELECT Account.id, Account.username FROM Account"

@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.reservations.models import Reservation
 from application.reservations.forms import ReservationForm
 
@@ -18,7 +18,7 @@ def reservations_form():
     return render_template("reservations/new.html", form = ReservationForm()) 
 
 @app.route("/reservations/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def reservations_create():
     form = ReservationForm(request.form)
 

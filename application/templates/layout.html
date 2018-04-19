@@ -10,7 +10,7 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 
-      <a class="navbar-brand" href="#">SaunaReservation</a>
+      <a class="navbar-brand" href="{{ url_for('index') }}">SaunaReservation</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('reservations_form') }} ">Add a reservation</a>
+            <a class="nav-link" href="{{ url_for('reservations_create') }} ">Add a reservation</a>
           </li>
         </ul>
         
