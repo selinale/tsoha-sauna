@@ -1,22 +1,26 @@
 {% extends "layout.html" %} 
 
 {% block body %}
-<p>
-</p>
 
-{% if needs_reservations is defined %}
-<p>
-    The following users need reservation:
-</p>
+<div class="row">
+    <div class="col-6 offset-3">
+        {% for date in future_dates %}
+            <div class="row" style="min-height: 100px">
+                <div class="col-12">
+                    {{ date.weekday() }} – {{ date.strftime('%d.%m.') }}
+                </div>
 
-<ul>
-    {% for user in needs_reservations %}
-    <li>
-        {{user.id}} {{user.username}}
-    </li>
-    {% endfor %}
-</ul>
-
-{% endif %}
+                <div class="col-12">
+                    <form method="POST" action="{{ url_for('reservations_create') }}">
+    
+                        {{ form.time.label }}
+                        {{ form.time }}
+                        <input type="submit" value="Luo varaus"/>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}

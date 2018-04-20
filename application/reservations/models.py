@@ -4,13 +4,12 @@ from application.models import Base
 from sqlalchemy.sql import text
 
 class Reservation(Base):
-
-    name = db.Column(db.String(144), nullable=False)
+    time = db.Column(db.DateTime(), nullable=False)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable = False)
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, time):
+        self.time = time
 
     @staticmethod
     def reservation_count():

@@ -10,6 +10,7 @@ class User(Base):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
     household = db.Column(db.String(2), db.ForeignKey('household.id'))
+    role = db.Column(db.String(10))
 
     reservations = db.relationship("Reservation", backref='account', lazy=True)
 
@@ -29,9 +30,6 @@ class User(Base):
 
     def is_authenticated(self):
         return True
-
-    def roled(self):
-        return ["ADMIN"]    
 
     @staticmethod
     def find_users_with_no_reservations():

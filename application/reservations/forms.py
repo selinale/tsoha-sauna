@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, StringField, validators
+from wtforms_components import SelectField
+
+times = [(x, x) for x in range(0, 24)]
 
 class ReservationForm(FlaskForm):
-    name = StringField("Reservation name", [validators.Length(min=2)])
+    time = SelectField("Time", choices=times)
 
     class Meta:
         csrf = False
