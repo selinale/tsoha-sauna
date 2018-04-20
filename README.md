@@ -20,6 +20,10 @@ Käyttäjä 1--x Tiedosto.
 
 Nämä saattavat muuttua.
 
+#### Testaus
+
+Tällä hetkellä vain admin voi tehdä varauksia. username = admin, password = admin.
+
 #### Linkit
 
 [Linkki sovellukseen](https://tsoha-sauna.herokuapp.com/)
