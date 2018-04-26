@@ -4,12 +4,14 @@ from application.models import Base
 from sqlalchemy.sql import text
 
 class Reservation(Base):
-    time = db.Column(db.DateTime(), nullable=False)
+    date = db.Column(db.DateTime(), nullable=False)
+    hour = db.Column(db.Integer, nullable=False)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable = False)
 
-    def __init__(self, time):
-        self.time = time
+    def __init__(self, date, hour):
+        self.date = date
+        self.hour = hour
 
     @staticmethod
     def reservation_count():

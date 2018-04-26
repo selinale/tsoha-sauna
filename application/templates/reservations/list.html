@@ -8,7 +8,7 @@
   </table>
   {% for reservation in reservations %}
     <div>
-      {{ reservation.name }}
+      {{ reservation.date.strftime('%d.%m.') }} klo {{ reservation.hour }}-{{ reservation.hour + 1 }}
     </div>
   {% endfor %}
 

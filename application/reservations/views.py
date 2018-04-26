@@ -1,25 +1,28 @@
-from flask import render_template, request, redirect, url_for
+import datetime
+
+from flask import redirect, render_template, request, url_for
 from flask_login import current_user
 
 from application import app, db, login_required
-from application.reservations.models import Reservation
 from application.reservations.forms import ReservationForm
+from application.reservations.models import Reservation
 
 
 @app.route("/reservations/", methods=["GET"])
 def reservations_index():
-    return render_template("reservations/list.html")
+    reservations = Reservation.query.all()
+    count = Reservation.reservation_count()
+    return render_template("reservations/list.html", reservations=reservations, count=count)
 
 
 @app.route("/reservations/new", methods=["POST"])
-@login_required(role="ADMIN")
+@login_required()
 def reservations_create():
     form = ReservationForm(request.form)
+    
+    date = datetime.datetime.strptime(form.date.data, "%Y-%m-%d").date()
 
-    if not form.validate():
-        return render_template("reservations/new.html", form=form)
-
-    r = Reservation(form.time.data)
+    r = Reservation(date, form.hour.data)
     r.account_id = current_user.id
 
     db.session().add(r)

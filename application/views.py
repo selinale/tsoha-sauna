@@ -11,4 +11,14 @@ from application.reservations.forms import ReservationForm
 def index():
     future_dates = [date.today() + datetime.timedelta(days=x) for x in range(0, 13)]
 
-    return render_template("index.html", future_dates=future_dates, form=ReservationForm())
+    days_to_string = [
+        'maanantai',
+        'tiistai',
+        'keskiviikko',
+        'torstai',
+        'perjantai',
+        'lauantai',
+        'sunnuntai'
+    ]
+    
+    return render_template("index.html", future_dates=future_dates, to_fi=days_to_string)
