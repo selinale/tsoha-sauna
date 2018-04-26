@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>SaunaReservation</title>
+    <title>Saunavuorot</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   
@@ -10,7 +10,7 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 
-      <a class="navbar-brand" href="{{ url_for('index') }}">SaunaReservation</a>
+      <a class="navbar-brand" href="{{ url_for('index') }}">Saunavuoron varaus</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -20,17 +20,17 @@
         <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('reservations_index') }} ">List reservations</a>
+            <a class="nav-link" href="{{ url_for('reservations_index') }} ">Varaukset</a>
           </li>
         </ul>
         
         <div class="form-inline mt-2 mt-md-0">
           {% if current_user.is_authenticated %}
-          <a href="{{ url_for('auth_logout') }}">Hello {{ current_user.username }} -- Logout</a>
+          <a href="{{ url_for('auth_logout') }}">Hei {{ current_user.username }} -- Kirjaudu ulos</a>
           {% else %}
-          <a href="{{ url_for('auth_login') }}">Login&nbsp;</a>
+          <a href="{{ url_for('auth_login') }}">Kirjaudu&nbsp;</a>
           
-          <a href="{{ url_for('auth_register') }}">Register </a>
+          <a href="{{ url_for('auth_register') }}">Rekisteröidy </a>
           {% endif %}
         </div>
       </div>
