@@ -3,16 +3,16 @@ from wtforms import PasswordField, StringField, SelectField
 
 
 class LoginForm(FlaskForm):
-    username = StringField("Username")
-    password = PasswordField("Password")
+    username = StringField("Käyttäjätunnus")
+    password = PasswordField("Salasana")
 
     class Meta:
         csrf = False
 
 class RegisterForm(FlaskForm):
-    username = StringField("Username")
-    password = PasswordField("Password")
-    confirmation = PasswordField("Password confirmation")
+    username = StringField("Käyttäjätunnus")
+    password = PasswordField("Salasana")
+    confirmation = PasswordField("Salasana uudelleen")
     household = SelectField(
         'Talous',
         choices=[
