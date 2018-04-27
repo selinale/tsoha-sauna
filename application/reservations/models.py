@@ -4,7 +4,7 @@ from application.models import Base
 from sqlalchemy.sql import text
 
 class Reservation(Base):
-    date = db.Column(db.DateTime(), nullable=False)
+    date = db.Column(db.Date(), nullable=False)
     hour = db.Column(db.Integer, nullable=False)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable = False)
@@ -21,4 +21,15 @@ class Reservation(Base):
         res = db.engine.execute(stmt)
 
         for row in res:
-            return row[0]    
+            return row[0]
+
+    @staticmethod
+    def reserved_hours(date):
+        stmt = text("SELECT hour "
+                    "FROM Reservation "
+                    "WHERE date = :reserved").params(reserved=str(date))
+
+        res = db.engine.execute(stmt)
+        res = [r[0] for r in res]
+
+        return res             
