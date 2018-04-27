@@ -7,7 +7,7 @@
         {% for date in future_dates %}
             <div class="row" style="min-height: 100px">
                 <div class="col-12">
-                    {{ to_fi[date.weekday()] }} – {{ date.strftime('%d.%m.') }}
+                    {{ to_fi[date['date'].weekday()] }} – {{ date['date'].strftime('%d.%m.') }}
                 </div>
 
                 <div class="col-12">
@@ -16,13 +16,13 @@
                         <label for="hour">
                             Tunti   
                             <select name="hour">
-                                {% for hour in range(0, 23) %}
+                                {% for hour in date['hours'] %}
                                     <option value={{hour}} id="time">{{hour}}</option>
                                 {% endfor %}
                             </select>
                         </label>
 
-                        <input type="text" id="date" name="date" value={{date}} hidden>
+                        <input type="text" id="date" name="date" value={{date['date']}} hidden>
 
                         <input type="submit" value="Luo varaus"/>
                     </form>
