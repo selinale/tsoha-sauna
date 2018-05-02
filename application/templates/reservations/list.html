@@ -1,14 +1,10 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Varaukset</th>
-    </tr>
-  </table>
+  <h3>Varaukset</h3>
   {% for reservation in reservations %}
     <div>
-      {{ reservation.date.strftime('%d.%m.') }} klo {{ reservation.hour }}-{{ reservation.hour + 1 }}
+      {{ reservation.date.strftime('%d.%m.') }} klo {{ reservation.hour }}-{{ reservation.hour + 1 }}, varaaja {{ reservation.household }}
     </div>
   {% endfor %}
 

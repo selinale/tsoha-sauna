@@ -1,0 +1,24 @@
+body {
+    font-family: 'Roboto Slab', serif;
+}
+
+.reservation {
+    margin: 2px;
+}
+
+.reservation-row {
+    margin: 20px 0px 20px 0px;
+}
+
+.reservations-text {
+    color: #d80e0e;
+}
+
+.button-row {
+    min-height: 60px;
+    line-height: 60px;
+}
+
+.date-row {
+    font-size: 1.5em;
+}

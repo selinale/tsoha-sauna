@@ -1,7 +1,10 @@
+from datetime import datetime
+
+from sqlalchemy.sql import text
+
 from application import db
 from application.models import Base
 
-from sqlalchemy.sql import text
 
 class Reservation(Base):
     date = db.Column(db.Date(), nullable=False)
@@ -25,11 +28,27 @@ class Reservation(Base):
 
     @staticmethod
     def reserved_hours(date):
-        stmt = text("SELECT hour "
+        stmt = text("SELECT reservation.hour, account.household "
                     "FROM Reservation "
-                    "WHERE date = :reserved").params(reserved=str(date))
+                    "LEFT JOIN account ON reservation.account_id=account.id "
+                    "WHERE date = :reserved ").params(reserved=str(date))
 
         res = db.engine.execute(stmt)
-        res = [r[0] for r in res]
+        res = [(r[0], r[1]) for r in res]
 
-        return res             
+
+        return res
+       
+    @staticmethod
+    def get_reservations_and_households():
+        stmt = text("SELECT account.household, reservation.hour, reservation.date"
+                    " FROM account"
+                    " LEFT JOIN reservation ON reservation.account_id=account.id")
+        res = db.engine.execute(stmt)
+
+        response = []
+
+        for row in res:
+            response.append({"household":row[0], "hour":row[1], "date": datetime.strptime(row[2], '%Y-%m-%d')})
+
+        return response                             

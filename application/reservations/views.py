@@ -7,11 +7,15 @@ from application import app, db, login_required
 from application.reservations.forms import ReservationForm
 from application.reservations.models import Reservation
 
+from sqlalchemy.sql import text
+
 
 @app.route("/reservations/", methods=["GET"])
 def reservations_index():
-    reservations = Reservation.query.all()
+    reservations = Reservation.get_reservations_and_households()
+
     count = Reservation.reservation_count()
+
     return render_template("reservations/list.html", reservations=reservations, count=count)
 
 

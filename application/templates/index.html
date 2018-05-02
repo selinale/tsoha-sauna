@@ -5,12 +5,22 @@
     <div class="row">
         <div class="col-6 offset-3">
             {% for date in future_dates %}
-                <div class="row" style="min-height: 100px">
-                    <div class="col-12">
+                <div class="row reservation-row">
+                    <div class="col-12 date-row">
                         {{ to_fi[date['date'].weekday()] }} – {{ date['date'].strftime('%d.%m.') }}
                     </div>
 
-                    <div class="col-12">
+                    {% if date['reserved_hours']|length > 0 %}
+                        <div class="col-12 reservations-text">VARATUT AJAT</div>
+                    {% endif %}
+                    
+                    {% for r in date['reserved_hours'] %}
+                    <div class="col-12 reservation">
+                        <i class="fas fa-clock"></i> {{ r[0] }} - {{ r[0] + 1}} <i class="fas fa-home"></i> {{ r[1] }}
+                    </div>
+                    {% endfor %}
+
+                    <div class="col-12 button-row">
                         <form method="POST" action="{{ url_for('reservations_create') }}">
                             
                             <label for="hour">
@@ -24,7 +34,7 @@
 
                             <input type="text" id="date" name="date" value={{date['date']}} hidden>
 
-                            <input type="submit" value="Luo varaus"/>
+                            <button class="btn btn-success" type="submit">Luo varaus</button>
                         </form>
                     </div>
                 </div>
