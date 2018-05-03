@@ -8,6 +8,8 @@ body {
 
 .reservation-row {
     margin: 20px 0px 20px 0px;
+    background-color: rgba(172, 192, 192, 0.623);
+    padding: 10px;
 }
 
 .reservations-text {

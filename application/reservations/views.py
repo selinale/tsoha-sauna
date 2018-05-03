@@ -32,4 +32,4 @@ def reservations_create():
     db.session().add(r)
     db.session().commit()
 
-    return redirect(url_for("reservations_index"))
+    return redirect(url_for("index"))
