@@ -48,7 +48,10 @@ class Reservation(Base):
 
         response = []
 
+
         for row in res:
-            response.append({"household":row[0], "hour":row[1], "date": datetime.strptime(row[2], '%Y-%m-%d')})
+            date = row[2] if type(row[2]) == datetime.date else datetime.strptime(row[2], '%Y-%m-%d')
+
+            response.append({"household":row[0], "hour":row[1], "date": date})
 
         return response                             
