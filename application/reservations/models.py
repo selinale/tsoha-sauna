@@ -52,6 +52,9 @@ class Reservation(Base):
         for row in res:
             date_row = datetime.strptime(row[2], '%Y-%m-%d') if isinstance(row[2], str) else row[2]
 
+            if date_row == None:
+                print("???????", row)
+
             response.append({"household":row[0], "hour":row[1], "date": date_row})
 
         return response                             
