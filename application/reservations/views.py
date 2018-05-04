@@ -3,7 +3,7 @@ import datetime
 from flask import redirect, render_template, request, url_for
 from flask_login import current_user
 
-from application import app, db, login_required
+from application import app, db, login_required, login_manager
 from application.reservations.forms import ReservationForm
 from application.reservations.models import Reservation
 
@@ -33,3 +33,14 @@ def reservations_create():
     db.session().commit()
 
     return redirect(url_for("index"))
+
+@app.route("/reservations/delete/<reservation_id>/", methods=["POST"])
+@login_required()
+def reservations_delete(reservation_id):
+
+    r = Reservation.query.get(reservation_id)
+    
+    db.session().delete(r)
+    db.session().commit()
+
+    return redirect(url_for("reservations_index"))

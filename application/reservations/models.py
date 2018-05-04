@@ -41,7 +41,7 @@ class Reservation(Base):
        
     @staticmethod
     def get_reservations_and_households():
-        stmt = text("SELECT account.household, reservation.hour, reservation.date"
+        stmt = text("SELECT reservation.id, account.household, reservation.hour, reservation.date"
                     " FROM account"
                     " LEFT JOIN reservation ON reservation.account_id=account.id")
         res = db.engine.execute(stmt)
@@ -49,12 +49,12 @@ class Reservation(Base):
         response = []
 
         for row in res:
-            date_row = datetime.strptime(row[2], '%Y-%m-%d') if isinstance(row[2], str) else row[2]
+            date_row = datetime.strptime(row[3], '%Y-%m-%d') if isinstance(row[3], str) else row[3]
 
             if date_row == None:
                 print("???????", row)
                 continue
 
-            response.append({"household":row[0], "hour":row[1], "date": date_row})
+            response.append({"id":row[0], "household":row[1], "hour":row[2], "date": date_row})
 
         return response                             

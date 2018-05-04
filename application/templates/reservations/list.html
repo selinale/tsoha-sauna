@@ -5,7 +5,12 @@
   {% for reservation in reservations %}
     <div>
       {{ reservation.date.strftime('%d.%m.') }} klo {{ reservation.hour }}-{{ reservation.hour + 1 }}, varaaja {{ reservation.household }}
-    </div>
+    </div> 
+    <td>
+      <form method="POST" action="{{ url_for('reservations_delete', reservation_id=reservation.id) }}">
+        <input type="submit" class="fa fa-trash" value="Poista"></input>
+      </form>  
+    </td> 
   {% endfor %}
 
   <div> {{ count }} varausta</div>
