@@ -5,12 +5,22 @@
   {% for reservation in reservations %}
     <div>
       {{ reservation.date.strftime('%d.%m.') }} klo {{ reservation.hour }}-{{ reservation.hour + 1 }}, varaaja {{ reservation.household }}
-    </div> 
+    </div>
+    {{ reservation.date }}
+    {{ date }}
+    {% if reservation.date in date %}
+
+    <td>
+      <a href="{{ url_for('reservations_edit', reservation_id=reservation.id) }}">
+        <i class="fas fa-pencil-alt"></i> 
+      </a> 
+    </td> 
     <td>
       <form method="POST" action="{{ url_for('reservations_delete', reservation_id=reservation.id) }}">
-        <input type="submit" class="fa fa-trash" value="Poista"></input>
+        <input type="submit" value="Poista"></input> <i class="fa fa-trash"></i>
       </form>  
     </td> 
+    {% endif %}
   {% endfor %}
 
   <div> {{ count }} varausta</div>

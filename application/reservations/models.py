@@ -1,4 +1,5 @@
-from datetime import datetime, date
+import datetime
+from datetime import date
 
 from sqlalchemy.sql import text
 
@@ -49,12 +50,28 @@ class Reservation(Base):
         response = []
 
         for row in res:
-            date_row = datetime.strptime(row[3], '%Y-%m-%d') if isinstance(row[3], str) else row[3]
+            date_row = datetime.datetime.strptime(row[3], '%Y-%m-%d') if isinstance(row[3], str) else row[3]
 
             if date_row == None:
-                print("???????", row)
                 continue
 
             response.append({"id":row[0], "household":row[1], "hour":row[2], "date": date_row})
 
         return response                             
+
+    @staticmethod
+    def get_future_dates():
+        future_dates = [{'date':date.today() + datetime.timedelta(days=x)} for x in range(0, 13)]
+
+        for day in future_dates:
+            hours = []
+            reserved_hours = Reservation.reserved_hours(day['date'])
+
+            for h in range(0, 24):
+                if h not in list(map(lambda x: x[0], reserved_hours)):
+                    hours.append(h)
+
+            day['hours'] = hours
+            day['reserved_hours'] = sorted(reserved_hours, key=lambda x: x[0])
+        
+        return future_dates

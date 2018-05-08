@@ -1,22 +1,26 @@
 import datetime
+from datetime import date
 
 from flask import redirect, render_template, request, url_for
 from flask_login import current_user
+from sqlalchemy.sql import text
 
-from application import app, db, login_required, login_manager
+from application import app, db, login_manager, login_required
 from application.reservations.forms import ReservationForm
 from application.reservations.models import Reservation
-
-from sqlalchemy.sql import text
 
 
 @app.route("/reservations/", methods=["GET"])
 def reservations_index():
     reservations = Reservation.get_reservations_and_households()
-
+    future_dates = Reservation.get_future_dates()
     count = Reservation.reservation_count()
 
-    return render_template("reservations/list.html", reservations=reservations, count=count)
+    dates = []
+    for d in future_dates:
+        dates.append(d['date'])
+
+    return render_template("reservations/list.html", reservations=reservations, count=count, date=dates)
 
 
 @app.route("/reservations/new", methods=["POST"])
@@ -44,3 +48,30 @@ def reservations_delete(reservation_id):
     db.session().commit()
 
     return redirect(url_for("reservations_index"))
+
+@app.route("/reservations/edit/<int:reservation_id>", methods=["GET", "POST"])
+@login_required()
+def reservations_edit(reservation_id):
+    reservation = Reservation.query.get(reservation_id)
+    date = reservation.date
+
+    if request.method == "GET":
+        future_dates = Reservation.get_future_dates()
+        available_hours = []
+
+        for day in future_dates:
+            if day.get('date') == date:
+                available_hours = day.get('hours')
+
+        return render_template("reservations/new.html", form=ReservationForm(), reservation=reservation_id, hours=available_hours)
+
+    form = ReservationForm(request.form)
+
+    r = Reservation.query.get(reservation_id)
+
+    r.date = date
+    r.hour = form.hour.data
+
+    db.session().commit()
+
+    return redirect(url_for("index"))

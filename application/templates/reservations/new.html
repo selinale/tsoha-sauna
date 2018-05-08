@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<div class="col-12 button-row">
+    <form method="POST" action="{{ url_for('reservations_edit', reservation_id=reservation ) }}">            
+        <label for="hour">
+            Tunti   
+            <select name="hour">
+                {% for hour in hours %}
+                    <option value={{hour}} id="time">{{hour}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <input type="text" id="date" name="date" value="{{ date }}" hidden>
+        <button class="btn btn-success" type="submit">Luo varaus</button>
+    </form>
+</div>
+{% endblock %}
