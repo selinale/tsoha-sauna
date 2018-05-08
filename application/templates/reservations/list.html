@@ -6,8 +6,6 @@
     <div>
       {{ reservation.date.strftime('%d.%m.') }} klo {{ reservation.hour }}-{{ reservation.hour + 1 }}, varaaja {{ reservation.household }}
     </div>
-    {{ reservation.date }}
-    {{ date }}
     {% if reservation.date in date %}
 
     <td>
