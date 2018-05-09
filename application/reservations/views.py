@@ -74,4 +74,4 @@ def reservations_edit(reservation_id):
 
     db.session().commit()
 
-    return redirect(url_for("reservations_list"))
+    return redirect(url_for("reservations_index"))
