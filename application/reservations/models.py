@@ -57,7 +57,7 @@ class Reservation(Base):
 
             response.append({"id":row[0], "household":row[1], "hour":row[2], "date": date_row})
 
-        return response                             
+        return response                         
 
     @staticmethod
     def get_future_dates():
@@ -75,3 +75,29 @@ class Reservation(Base):
             day['reserved_hours'] = sorted(reserved_hours, key=lambda x: x[0])
         
         return future_dates
+
+    @staticmethod
+    def get_reservations_by_household(household):
+        stmt = text("SELECT date, hour, id FROM reservation"
+                    " WHERE account_id IN"
+                    " (SELECT id FROM account"
+                    " WHERE household = :household)"
+                    " ORDER BY hour ASC").params(household=str(household))
+
+        res = db.engine.execute(stmt)
+
+        date_dict = {}
+
+        for row in res:
+            date = datetime.datetime.strptime(row[0], '%Y-%m-%d').date() if isinstance(row[0], str) else row[0]
+            date_key = date.strftime('%d.%m.')
+
+            reservation = "klo {}-{}".format(row[1], row[1]+1)
+            date_obj = {"string": reservation, "id": row[2]}
+
+            if date_key in date_dict:
+                date_dict[date_key].append(date_obj)
+            else:
+                date_dict[date_key] = [date_obj]
+
+        return date_dict

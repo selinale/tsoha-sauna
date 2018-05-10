@@ -6,21 +6,24 @@ from flask_login import current_user
 from sqlalchemy.sql import text
 
 from application import app, db, login_manager, login_required
+from application.auth.models import User
 from application.reservations.forms import ReservationForm
 from application.reservations.models import Reservation
 
 
 @app.route("/reservations/", methods=["GET"])
+@login_required()
 def reservations_index():
-    reservations = Reservation.get_reservations_and_households()
     future_dates = Reservation.get_future_dates()
-    count = Reservation.reservation_count()
-
+    household  = User.query.get(current_user.id).household
+    days = Reservation.get_reservations_by_household(household)
+    days_sorted = sorted(days, key=lambda x: x)
+    
     dates = []
     for d in future_dates:
-        dates.append(d['date'])
+        dates.append(d['date'].strftime('%d.%m.'))
 
-    return render_template("reservations/list.html", reservations=reservations, count=count, date=dates)
+    return render_template("reservations/list.html", count=len(days), dates=dates, days=days, days_sorted=days_sorted)
 
 
 @app.route("/reservations/new", methods=["POST"])
