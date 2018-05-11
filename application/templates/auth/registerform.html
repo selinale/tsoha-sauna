@@ -9,47 +9,29 @@
 </div>
 {% endif %}
 
-<br/>
-
 <form method="POST" action="{{ url_for('auth_register') }}">
-    <table> 
-        <tr>
-            <td>
-                {{ form.household.label }}
-            </td>
-            <td>
-                {{ form.household }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.username.label }}
-            </td>
-            <td>
-                {{ form.username }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.password.label }}
-            </td>
-            <td>
-                {{ form.password }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.confirmation.label }}
-            </td>
-            <td>
-                {{ form.confirmation }}
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" class="btn btn-primary" value="Rekisteröidy" />
-            </td>
-        </tr>
-    </form>
+    <tr>
+        <td>
+            {{ form.household.label }}
+        </td>
+        <td>
+            {{ form.household }}
+        </td>
+    </tr>
+    <div class="form-group">
+        <label for="username">Käyttäjätunnus</label>
+        <input type="text" name="username" class="form-control" id="username" placeholder="Kirjoita käyttäjätunnus">
+    </div>
+    <div>
+        <label for="password">Salasana</label>
+        <input type="password" name="password" class="form-control" id="password" placeholder="Kirjoita salasana">
+    </div>
+    <div>
+        <label for="confirmation">Salasana uudelleen</label>
+        <input type="password" name="confirmation" class="form-control" id="confirmation" placeholder="Kirjoita salasana uudelleen">
+    </div>
+    <button type="submit" class="btn btn-primary">Rekisteröidy</button>
+</form>
 
     {% endblock %}
+

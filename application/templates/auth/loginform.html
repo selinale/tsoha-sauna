@@ -1,7 +1,12 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
+{% if error %}
+<div>
+    <b class="alert alert-danger">{{error}}</b>
+</div>
+{% endif %}
+
 <form method="POST" action="{{ url_for('auth_login') }}">
   <div class="form-group">
 
@@ -10,7 +15,7 @@
   </div>
   <div>
     <label for="password">Salasana</label>
-    <input type="password" name="password" class="form-control" id="password" placeholder="Salasana">
+    <input type="password" name="password" class="form-control" id="password" placeholder="Kirjoita salasana">
   </div>
   <button type="submit" class="btn btn-primary">Kirjaudu</button>
 </form>
