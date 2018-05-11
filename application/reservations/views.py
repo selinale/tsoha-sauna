@@ -23,7 +23,7 @@ def reservations_index():
     for d in future_dates:
         dates.append(d['date'].strftime('%d.%m.'))
 
-    return render_template("reservations/list.html", count=len(days), dates=dates, days=days, days_sorted=days_sorted)
+    return render_template("reservations/list.html", dates=dates, days=days, days_sorted=days_sorted)
 
 
 @app.route("/reservations/new", methods=["POST"])

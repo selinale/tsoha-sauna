@@ -18,16 +18,6 @@ class Reservation(Base):
         self.hour = hour
 
     @staticmethod
-    def reservation_count():
-        stmt = text("SELECT COUNT(Reservation.id)"
-                    "FROM Reservation")
-        
-        res = db.engine.execute(stmt)
-
-        for row in res:
-            return row[0]
-
-    @staticmethod
     def reserved_hours(date):
         stmt = text("SELECT reservation.hour, account.household "
                     "FROM Reservation "
@@ -39,25 +29,6 @@ class Reservation(Base):
 
 
         return res
-       
-    @staticmethod
-    def get_reservations_and_households():
-        stmt = text("SELECT reservation.id, account.household, reservation.hour, reservation.date"
-                    " FROM account"
-                    " LEFT JOIN reservation ON reservation.account_id=account.id")
-        res = db.engine.execute(stmt)
-
-        response = []
-
-        for row in res:
-            date_row = datetime.datetime.strptime(row[3], '%Y-%m-%d') if isinstance(row[3], str) else row[3]
-
-            if date_row == None:
-                continue
-
-            response.append({"id":row[0], "household":row[1], "hour":row[2], "date": date_row})
-
-        return response                         
 
     @staticmethod
     def get_future_dates():

@@ -56,7 +56,7 @@ from application.reservations import views
 from application.auth import models
 from application.auth import views
 
-from application.households import models, views
+from application.households import models
 
 from application.auth.models import User
 
