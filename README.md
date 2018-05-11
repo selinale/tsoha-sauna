@@ -34,6 +34,8 @@ Admin ei näe listausta kaikista varauksista eikä näin ollen pysty muokkaamaan
 
 [Linkki sovellukseen](https://tsoha-sauna.herokuapp.com/)
 
-[User storyt](https://github.com/selinale/tsoha-sauna/blob/master/documentation/userstories.md)
+[User storyt ja SQL-kyselyt](https://github.com/selinale/tsoha-sauna/blob/master/documentation/userstories.md)
 
 [Tietokantakaavio](https://github.com/selinale/tsoha-sauna/blob/master/documentation/DBtable.pdf)
+
+[Tietokantataulu](https://github.com/selinale/tsoha-sauna/blob/master/documentation/schema.md) 
