@@ -80,8 +80,8 @@ class Reservation(Base):
     def get_reservations_by_household(household):
         stmt = text("SELECT date, hour, id FROM reservation"
                     " WHERE account_id IN"
-                    " (SELECT id FROM account"
-                    " WHERE household = :household)"
+                        " (SELECT id FROM account"
+                        " WHERE household = :household)"
                     " ORDER BY hour ASC").params(household=str(household))
 
         res = db.engine.execute(stmt)
