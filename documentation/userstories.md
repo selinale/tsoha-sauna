@@ -18,7 +18,7 @@ LEFT JOIN account ON reservation.account_id=account.id
 WHERE date = :reserved
 ```
 
-Etsitään varauksen tehnyt talous
+Etsitään varauksen tehnyt talous:
 ```sql
 SELECT date, hour, id FROM reservation
 WHERE account_id IN
